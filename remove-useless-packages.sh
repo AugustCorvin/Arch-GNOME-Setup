@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 
 packages=(
-    yelp
     gnome-tour
-
     gnome-weather
     gnome-contacts
     gnome-maps
     gnome-characters
     gnome-font-viewer
-
-    cheese
-    evince
+    
+    epiphany
     malcontent
     simple-scan
 )
