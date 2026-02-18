@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
 packages=(
-    gnome-maps
-    gnome-music
+    yelp
+    gnome-tour
+
     gnome-weather
+    gnome-contacts
+    gnome-maps
+    gnome-characters
+    gnome-font-viewer
+
+    cheese
+    evince
+    malcontent
+    simple-scan
 )
 
 for pkg in "${packages[@]}"; do
