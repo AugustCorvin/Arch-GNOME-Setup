@@ -16,15 +16,35 @@ packages=(
     simple-scan
 )
 
+removed=()
+not_installed=()
+
 for pkg in "${packages[@]}"; do
     if pacman -Qi "$pkg" >/dev/null 2>&1; then
-        echo "Removing $pkg"
-        if sudo pacman -Rns --noconfirm "$pkg"; then
-            echo "$pkg removed"
-        else
-            echo "Failed to remove $pkg"
-        fi
+        sudo pacman -Rns --noconfirm "$pkg" >/dev/null 2>&1
+        removed+=("$pkg")
     else
-        echo "$pkg not installed"
+        not_installed+=("$pkg")
     fi
 done
+
+for i in {1..10}; do
+    echo
+done
+
+echo "===== Removal Summary ====="
+if [ ${#removed[@]} -gt 0 ]; then
+    echo "Removed packages:"
+    for pkg in "${removed[@]}"; do
+        echo " - $pkg"
+    done
+else
+    echo "No packages were removed."
+fi
+
+if [ ${#not_installed[@]} -gt 0 ]; then
+    echo "Packages not installed / already absent:"
+    for pkg in "${not_installed[@]}"; do
+        echo " - $pkg"
+    done
+fi
